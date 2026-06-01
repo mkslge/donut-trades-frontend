@@ -51,12 +51,13 @@ jobs:
 
       - name: Create deployment package
         run: |
-          zip -r "${{ env.DEPLOYMENT_PACKAGE }}" . \
-            -x '.git/*' \
-            -x 'node_modules/*' \
-            -x '.env' \
-            -x '.env.local' \
-            -x '.env*.local'
+          rm -rf deploy
+          cp -R .next/standalone deploy
+          mkdir -p deploy/.next/static
+          cp -R .next/static deploy/.next/static
+          if [ -d public ]; then cp -R public deploy/public; fi
+          cd deploy
+          zip -r "../${{ env.DEPLOYMENT_PACKAGE }}" .
 
       - name: Deploy frontend to Azure App Service
         uses: azure/webapps-deploy@v3
