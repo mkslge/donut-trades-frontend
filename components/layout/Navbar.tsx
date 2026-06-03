@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, ShieldCheck } from "lucide-react";
+import { Search, ShieldCheck, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
@@ -20,6 +20,12 @@ export function Navbar() {
             <Link href="/">
               <Search data-icon="inline-start" />
               Search
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="hidden sm:inline-flex">
+            <Link href="/leaderboard">
+              <Trophy data-icon="inline-start" />
+              Leaderboard
             </Link>
           </Button>
           <Button asChild>
